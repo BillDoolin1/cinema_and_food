@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Latest Movie Selection</title>
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .card {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow:
+        0 2px 10px
+        rgba(0,0,0,0.1);
+    }
+
+    .value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="card">
+
+    <h1>🎬 Latest Selection</h1>
+
+    <p>
+      <strong>Date</strong>
+    </p>
+
+    <p
+      class="value"
+      id="latestDate"
+    >
+      Loading...
+    </p>
+
+
+    <p>
+      <strong>Movie</strong>
+    </p>
+
+    <p
+      class="value"
+      id="latestMovie"
+    >
+      Loading...
+    </p>
+
+
+    <button onclick="loadLatest()">
+      Refresh
+    </button>
+
+  </div>
+
+
+<script>
+
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbxP4KZftW2k0K9d4kKReDLwBXY_1BXjDzLr5w-XencvzcGiNplOnqbt63oRkJeLyYTPKQ/exec";
+
+
+  function loadLatest() {
+
+    fetch(
+      GOOGLE_SCRIPT_URL
+    )
+
+    .then(function(response) {
+
+      return response.json();
+
+    })
+
+    .then(function(data) {
+
+      document
+        .getElementById("latestDate")
+        .textContent =
+        data.date;
+
+
+      document
+        .getElementById("latestMovie")
+        .textContent =
+        data.movie;
+
+    })
+
+    .catch(function(error) {
+
+      console.error(error);
+
+      document
+        .getElementById("latestDate")
+        .textContent =
+        "Unable to load";
+
+      document
+        .getElementById("latestMovie")
+        .textContent =
+        "Unable to load";
+
+    });
+
+  }
+
+
+  loadLatest();
+
+</script>
+
+</body>
+</html>
