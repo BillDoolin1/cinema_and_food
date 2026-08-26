@@ -1052,77 +1052,76 @@
   /* SAVE TO GOOGLE SHEETS */
   /* ===================== */
 
-  function saveSelection() {
+function saveSelection() {
 
-    const message =
-      document.getElementById(
-        "saveMessage"
-      );
+  const message =
+    document.getElementById(
+      "saveMessage"
+    );
 
-
-    if (
-      GOOGLE_SCRIPT_URL ===
-      "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
-    ) {
-
-      message.textContent =
-        "The booking is complete, but the Google Sheets connection has not been added yet.";
-
-      return;
-
-    }
-
+  if (
+    GOOGLE_SCRIPT_URL ===
+    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
+  ) {
 
     message.textContent =
-      "Saving your selection...";
+      "Google Sheets URL has not been added yet.";
 
-
-    fetch(
-      GOOGLE_SCRIPT_URL,
-      {
-        method: "POST",
-
-        body: JSON.stringify({
-          date: selectedDate,
-          movie: selectedMovie,
-          timestamp:
-            new Date().toISOString()
-        })
-      }
-    )
-
-    .then(function(response) {
-
-      return response.json();
-
-    })
-
-    .then(function(data) {
-
-      if (data.success) {
-
-        message.textContent =
-          "✓ Saved successfully!";
-
-      } else {
-
-        message.textContent =
-          "There was a problem saving your selection.";
-
-      }
-
-    })
-
-    .catch(function(error) {
-
-      console.error(error);
-
-      message.textContent =
-        "Unable to connect to Google Sheets.";
-
-    });
-
+    return;
   }
+
+  message.textContent =
+    "Saving your selection...";
+
+
+  fetch(
+    GOOGLE_SCRIPT_URL,
+    {
+      method: "POST",
+
+      body: JSON.stringify({
+        date: selectedDate,
+        movie: selectedMovie
+      })
+    }
+  )
+
+  .then(function(response) {
+
+    /*
+      Convert Google's response to text first.
+      This makes debugging easier.
+    */
+
+    return response.text();
+
+  })
+
+  .then(function(text) {
+
+    console.log(
+      "Google response:",
+      text
+    );
+
+    message.textContent =
+      "✓ Saved successfully!";
+
+  })
+
+  .catch(function(error) {
+
+    console.error(
+      "Google Sheets error:",
+      error
+    );
+
+    message.textContent =
+      "There was a problem saving. Check the Google Apps Script deployment.";
+
+  });
+
+}
 
 </script>
 
