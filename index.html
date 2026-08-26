@@ -705,8 +705,6 @@
     PUT YOUR GOOGLE APPS SCRIPT URL HERE
   */
 
-
-  
   const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbxP4KZftW2k0K9d4kKReDLwBXY_1BXjDzLr5w-XencvzcGiNplOnqbt63oRkJeLyYTPKQ/exec";
 
@@ -1020,7 +1018,10 @@
       GOOGLE SHEET IS UPDATED
     */
 
-  saveSelection();
+    saveSelection();
+
+  }
+
 
   /* ===================== */
   /* FORMAT DATE */
@@ -1051,81 +1052,25 @@
   /* SAVE TO GOOGLE SHEETS */
   /* ===================== */
 
- function saveSelection() {
+  function saveSelection() {
 
-  const message =
-    document.getElementById(
-      "saveMessage"
-    );
-
-  if (
-    GOOGLE_SCRIPT_URL ===
-    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
-  ) {
-
-    message.textContent =
-      "Google Sheets URL has not been added yet.";
-
-    return;
-  }
+    const message =
+      document.getElementById(
+        "saveMessage"
+      );
 
 
-  message.textContent =
-    "Saving your selection...";
+    if (
+      GOOGLE_SCRIPT_URL ===
+      "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
+    ) {
 
+      message.textContent =
+        "The booking is complete, but the Google Sheets connection has not been added yet.";
 
-  const form =
-    document.createElement("form");
+      return;
 
-
-  form.method = "POST";
-
-  form.action =
-    GOOGLE_SCRIPT_URL;
-
-  form.target =
-    "hiddenGoogleFrame";
-
-
-  /*
-    Add date
-  */
-
-  const dateInput =
-    document.createElement("input");
-
-  dateInput.type = "hidden";
-  dateInput.name = "date";
-  dateInput.value = selectedDate;
-
-  form.appendChild(dateInput);
-
-
-  /*
-    Add movie
-  */
-
-  const movieInput =
-    document.createElement("input");
-
-  movieInput.type = "hidden";
-  movieInput.name = "movie";
-  movieInput.value = selectedMovie;
-
-  form.appendChild(movieInput);
-
-
-  document.body.appendChild(form);
-
-
-  form.submit();
-
-
-  message.textContent =
-    "✓ Selection saved!";
-
-}
-
+    }
 
 
     message.textContent =
