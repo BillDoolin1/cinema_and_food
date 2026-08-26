@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Movie Voucher Booking</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    section {
+      background: white;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    input[type="date"] {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .movies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .movie {
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .movie:hover {
+      transform: translateY(-3px);
+    }
+
+    .movie.selected {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
+    .movie h3 {
+      margin: 0 0 8px;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .vouchers {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .voucher {
+      border: 2px dashed #2563eb;
+      border-radius: 12px;
+      padding: 25px;
+      background: #eff6ff;
+    }
+
+    .voucher h3 {
+      margin-top: 0;
+    }
+
+    .voucher-code {
+      display: inline-block;
+      background: #111827;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🎬 Movie Night</h1>
+    <p>Select a date, choose a movie, and view your vouchers.</p>
+  </header>
+
+  <main>
+
+    <!-- Date Selection -->
+    <section>
+      <h2>1. Choose a Date</h2>
+
+      <input type="date" id="movieDate">
+    </section>
+
+
+    <!-- Movie Selection -->
+    <section>
+      <h2>2. Choose a Movie</h2>
+
+      <div class="movies">
+
+        <div class="movie" data-movie="The Adventure">
+          <h3>🚀 The Adventure</h3>
+          <p>Action / Adventure</p>
+        </div>
+
+        <div class="movie" data-movie="Love in Paris">
+          <h3>❤️ Love in Paris</h3>
+          <p>Romance</p>
+        </div>
+
+        <div class="movie" data-movie="The Last Mystery">
+          <h3>🔍 The Last Mystery</h3>
+          <p>Mystery / Thriller</p>
+        </div>
+
+        <div class="movie" data-movie="Galaxy Rising">
+          <h3>🌌 Galaxy Rising</h3>
+          <p>Sci-Fi</p>
+        </div>
+
+      </div>
+
+      <br>
+
+      <button id="confirmButton">
+        Confirm Selection
+      </button>
+
+      <div id="result"></div>
+    </section>
+
+
+    <!-- Vouchers -->
+    <section>
+      <h2>3. Your Vouchers</h2>
+
+      <div class="vouchers" id="vouchers">
+
+        <div class="voucher">
+          <h3>🎟️ Voucher 1</h3>
+
+          <p>
+            Valid for one movie ticket.
+          </p>
+
+          <p>
+            Movie: <strong id="voucherMovie1"></strong>
+          </p>
+
+          <p>
+            Date: <strong id="voucherDate1"></strong>
+          </p>
+
+          <div class="voucher-code">
+            MOVIE-2026-A1
+          </div>
+        </div>
+
+
+        <div class="voucher">
+          <h3>🎟️ Voucher 2</h3>
+
+          <p>
+            Valid for one movie ticket.
+          </p>
+
+          <p>
+            Movie: <strong id="voucherMovie2"></strong>
+          </p>
+
+          <p>
+            Date: <strong id="voucherDate2"></strong>
+          </p>
+
+          <div class="voucher-code">
+            MOVIE-2026-B2
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Movie Voucher Website
+  </footer>
+
+
+  <script>
+    let selectedMovie = "";
+
+    const movies = document.querySelectorAll(".movie");
+    const dateInput = document.getElementById("movieDate");
+    const confirmButton = document.getElementById("confirmButton");
+    const vouchers = document.getElementById("vouchers");
+    const result = document.getElementById("result");
+
+    // Prevent selecting dates in the past
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.min = today;
+
+
+    // Movie selection
+    movies.forEach(movie => {
+      movie.addEventListener("click", () => {
+
+        // Remove selection from all movies
+        movies.forEach(m => {
+          m.classList.remove("selected");
+        });
+
+        // Select clicked movie
+        movie.classList.add("selected");
+
+        selectedMovie = movie.dataset.movie;
+      });
+    });
+
+
+    // Confirm selection
+    confirmButton.addEventListener("click", () => {
+
+      const selectedDate = dateInput.value;
+
+      if (!selectedDate) {
+        result.textContent = "Please select a date.";
+        return;
+      }
+
+      if (!selectedMovie) {
+        result.textContent = "Please select a movie.";
+        return;
+      }
+
+      // Format date
+      const formattedDate = new Date(
+        selectedDate + "T00:00:00"
+      ).toLocaleDateString("en-IE", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+
+
+      // Update vouchers
+      document.getElementById("voucherMovie1").textContent =
+        selectedMovie;
+
+      document.getElementById("voucherMovie2").textContent =
+        selectedMovie;
+
+      document.getElementById("voucherDate1").textContent =
+        formattedDate;
+
+      document.getElementById("voucherDate2").textContent =
+        formattedDate;
+
+
+      // Show vouchers
+      vouchers.style.display = "grid";
+
+      result.textContent =
+        "Your selection has been confirmed!";
+    });
+  </script>
+
+</body>
+</html>
