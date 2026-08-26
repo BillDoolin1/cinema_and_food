@@ -705,6 +705,8 @@
     PUT YOUR GOOGLE APPS SCRIPT URL HERE
   */
 
+
+  
   const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbxP4KZftW2k0K9d4kKReDLwBXY_1BXjDzLr5w-XencvzcGiNplOnqbt63oRkJeLyYTPKQ/exec";
 
@@ -1018,7 +1020,38 @@
       GOOGLE SHEET IS UPDATED
     */
 
-    function saveSelection() {
+  saveSelection();
+
+  /* ===================== */
+  /* FORMAT DATE */
+  /* ===================== */
+
+  function formatDate(dateString) {
+
+    const date =
+      new Date(
+        dateString + "T00:00:00"
+      );
+
+
+    return date.toLocaleDateString(
+      "en-IE",
+      {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      }
+    );
+
+  }
+
+
+  /* ===================== */
+  /* SAVE TO GOOGLE SHEETS */
+  /* ===================== */
+
+ function saveSelection() {
 
   const message =
     document.getElementById(
@@ -1093,55 +1126,6 @@
 
 }
 
-
-  /* ===================== */
-  /* FORMAT DATE */
-  /* ===================== */
-
-  function formatDate(dateString) {
-
-    const date =
-      new Date(
-        dateString + "T00:00:00"
-      );
-
-
-    return date.toLocaleDateString(
-      "en-IE",
-      {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      }
-    );
-
-  }
-
-
-  /* ===================== */
-  /* SAVE TO GOOGLE SHEETS */
-  /* ===================== */
-
-  function saveSelection() {
-
-    const message =
-      document.getElementById(
-        "saveMessage"
-      );
-
-
-    if (
-      GOOGLE_SCRIPT_URL ===
-      "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
-    ) {
-
-      message.textContent =
-        "The booking is complete, but the Google Sheets connection has not been added yet.";
-
-      return;
-
-    }
 
 
     message.textContent =
