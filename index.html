@@ -1018,9 +1018,80 @@
       GOOGLE SHEET IS UPDATED
     */
 
-    saveSelection();
+    function saveSelection() {
 
+  const message =
+    document.getElementById(
+      "saveMessage"
+    );
+
+  if (
+    GOOGLE_SCRIPT_URL ===
+    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
+  ) {
+
+    message.textContent =
+      "Google Sheets URL has not been added yet.";
+
+    return;
   }
+
+
+  message.textContent =
+    "Saving your selection...";
+
+
+  const form =
+    document.createElement("form");
+
+
+  form.method = "POST";
+
+  form.action =
+    GOOGLE_SCRIPT_URL;
+
+  form.target =
+    "hiddenGoogleFrame";
+
+
+  /*
+    Add date
+  */
+
+  const dateInput =
+    document.createElement("input");
+
+  dateInput.type = "hidden";
+  dateInput.name = "date";
+  dateInput.value = selectedDate;
+
+  form.appendChild(dateInput);
+
+
+  /*
+    Add movie
+  */
+
+  const movieInput =
+    document.createElement("input");
+
+  movieInput.type = "hidden";
+  movieInput.name = "movie";
+  movieInput.value = selectedMovie;
+
+  form.appendChild(movieInput);
+
+
+  document.body.appendChild(form);
+
+
+  form.submit();
+
+
+  message.textContent =
+    "✓ Selection saved!";
+
+}
 
 
   /* ===================== */
