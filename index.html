@@ -1051,7 +1051,6 @@
   /* ===================== */
   /* SAVE TO GOOGLE SHEETS */
   /* ===================== */
-
 function saveSelection() {
 
   const message =
@@ -1070,58 +1069,66 @@ function saveSelection() {
     return;
   }
 
+
   message.textContent =
     "Saving your selection...";
 
 
-  fetch(
-    GOOGLE_SCRIPT_URL,
-    {
-      method: "POST",
+  const form =
+    document.createElement("form");
 
-      body: JSON.stringify({
-        date: selectedDate,
-        movie: selectedMovie
-      })
-    }
-  )
 
-  .then(function(response) {
+  form.method = "POST";
 
-    /*
-      Convert Google's response to text first.
-      This makes debugging easier.
-    */
+  form.action =
+    GOOGLE_SCRIPT_URL;
 
-    return response.text();
+  form.target =
+    "hiddenGoogleFrame";
 
-  })
 
-  .then(function(text) {
+  /*
+    Add date
+  */
 
-    console.log(
-      "Google response:",
-      text
-    );
+  const dateInput =
+    document.createElement("input");
 
-    message.textContent =
-      "✓ Saved successfully!";
+  dateInput.type = "hidden";
+  dateInput.name = "date";
+  dateInput.value = selectedDate;
 
-  })
+  form.appendChild(dateInput);
 
-  .catch(function(error) {
 
-    console.error(
-      "Google Sheets error:",
-      error
-    );
+  /*
+    Add movie
+  */
 
-    message.textContent =
-      "There was a problem saving. Check the Google Apps Script deployment.";
+  const movieInput =
+    document.createElement("input");
 
-  });
+  movieInput.type = "hidden";
+  movieInput.name = "movie";
+  movieInput.value = selectedMovie;
+
+  form.appendChild(movieInput);
+
+
+  document.body.appendChild(form);
+
+
+  form.submit();
+
+
+  message.textContent =
+    "✓ Selection saved!";
 
 }
+  <iframe
+  name="hiddenGoogleFrame"
+  style="display:none;"
+></iframe>
 
 </script>
 
