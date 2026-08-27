@@ -744,7 +744,7 @@
             Diner:
 
             <strong
-              "Mister S"
+              Mister S
             ></strong>
 
           </p>
@@ -794,8 +794,11 @@
             Date:
 
             <strong
-              id="voucherDate2" "if scheduled"
+              id="voucherDate2" 
             ></strong>
+            <span>if scheduled</span>
+            
+  
 
           </p>
 
@@ -1174,62 +1177,42 @@
     /* UPDATE VOUCHERS */
     /* ===================== */
 
-    function updateVouchers() {
+function updateVouchers() {
 
-      const formattedDate =
-        formatDate(
-          selectedDate
-        );
+  const formattedDate =
+    formatDate(selectedDate);
 
+  const elements = {
 
-      document
-        .getElementById(
-          "summaryDate"
-        )
-        .textContent =
-        formattedDate;
+    summaryDate: formattedDate,
 
+    summaryMovie: selectedMovie,
 
-      document
-        .getElementById(
-          "summaryMovie"
-        )
-        .textContent =
-        selectedMovie;
+    voucherMovie2: selectedMovie,
 
+    voucherDate1: formattedDate,
 
-      document
-        .getElementById(
-          "voucherMovie1"
-        )
-        .textContent =
-        selectedMovie;
+    voucherDate2: formattedDate
 
+  };
 
-      document
-        .getElementById(
-          "voucherMovie2"
-        )
-        .textContent =
-        selectedMovie;
+  Object.keys(elements).forEach(
+    function(id) {
 
+      const element =
+        document.getElementById(id);
 
-      document
-        .getElementById(
-          "voucherDate1"
-        )
-        .textContent =
-        formattedDate;
+      if (element) {
 
+        element.textContent =
+          elements[id];
 
-      document
-        .getElementById(
-          "voucherDate2"
-        )
-        .textContent =
-        formattedDate;
+      }
 
     }
+  );
+
+}
 
 
     /* ===================== */
