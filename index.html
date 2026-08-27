@@ -1051,86 +1051,67 @@
   /* ===================== */
   /* SAVE TO GOOGLE SHEETS */
   /* ===================== */
+<script>
 function saveSelection() {
 
   const message =
-    document.getElementById(
-      "saveMessage"
-    );
+    document.getElementById("saveMessage");
 
   if (
     GOOGLE_SCRIPT_URL ===
     "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
   ) {
-
     message.textContent =
-      "Google Sheets URL has not been added yet.";
+      "Google Sheets URL has not been added.";
 
     return;
   }
 
-
   message.textContent =
     "Saving your selection...";
-
 
   const form =
     document.createElement("form");
 
-
   form.method = "POST";
-
-  form.action =
-    GOOGLE_SCRIPT_URL;
-
-  form.target =
-    "hiddenGoogleFrame";
+  form.action = GOOGLE_SCRIPT_URL;
+  form.target = "hiddenGoogleFrame";
 
 
-  /*
-    Add date
-  */
-
-  const dateInput =
+  const dateField =
     document.createElement("input");
 
-  dateInput.type = "hidden";
-  dateInput.name = "date";
-  dateInput.value = selectedDate;
+  dateField.type = "hidden";
+  dateField.name = "date";
+  dateField.value = selectedDate;
 
-  form.appendChild(dateInput);
+  form.appendChild(dateField);
 
 
-  /*
-    Add movie
-  */
-
-  const movieInput =
+  const movieField =
     document.createElement("input");
 
-  movieInput.type = "hidden";
-  movieInput.name = "movie";
-  movieInput.value = selectedMovie;
+  movieField.type = "hidden";
+  movieField.name = "movie";
+  movieField.value = selectedMovie;
 
-  form.appendChild(movieInput);
+  form.appendChild(movieField);
 
 
   document.body.appendChild(form);
 
-
   form.submit();
 
+  document.body.removeChild(form);
 
   message.textContent =
-    "✓ Selection saved!";
-
+    "✓ Your selection has been sent!";
 }
-  <iframe
+</script>
+</script>
+<iframe
   name="hiddenGoogleFrame"
   style="display:none;"
 ></iframe>
-
-</script>
-
 </body>
 </html>
