@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -36,7 +38,9 @@
       padding: 25px 20px;
     }
 
-    /* Navigation */
+    /* ------------------ */
+    /* Navigation Tabs */
+    /* ------------------ */
 
     .tabs {
       display: flex;
@@ -66,7 +70,9 @@
       cursor: not-allowed;
     }
 
+    /* ------------------ */
     /* Pages */
+    /* ------------------ */
 
     .tab-content {
       display: none;
@@ -75,14 +81,16 @@
       border-radius: 12px;
       box-shadow:
         0 2px 10px
-        rgba(0,0,0,0.08);
+        rgba(0, 0, 0, 0.08);
     }
 
     .tab-content.active {
       display: block;
     }
 
+    /* ------------------ */
     /* Calendar */
+    /* ------------------ */
 
     .calendar-container {
       margin-bottom: 35px;
@@ -139,7 +147,9 @@
       background: transparent;
     }
 
+    /* ------------------ */
     /* Movies */
+    /* ------------------ */
 
     .movies {
       display: grid;
@@ -154,6 +164,7 @@
       padding: 20px;
       cursor: pointer;
       text-align: center;
+      background: white;
     }
 
     .movie:hover {
@@ -165,7 +176,9 @@
       background: #eff6ff;
     }
 
+    /* ------------------ */
     /* Vouchers */
+    /* ------------------ */
 
     .vouchers {
       display: grid;
@@ -191,7 +204,11 @@
       letter-spacing: 1px;
     }
 
-    button.continue-button {
+    /* ------------------ */
+    /* Buttons */
+    /* ------------------ */
+
+    .continue-button {
       background: #2563eb;
       color: white;
       border: none;
@@ -200,6 +217,10 @@
       border-radius: 8px;
       cursor: pointer;
       margin-top: 20px;
+    }
+
+    .continue-button:hover {
+      background: #1d4ed8;
     }
 
     .message {
@@ -214,7 +235,9 @@
       margin-bottom: 20px;
     }
 
-    /* Final page */
+    /* ------------------ */
+    /* Yay Page */
+    /* ------------------ */
 
     .yay-page {
       text-align: center;
@@ -244,872 +267,1160 @@
     }
 
   </style>
+
 </head>
+
 
 <body>
 
-<header>
-  <h1>🎬 Movie Night</h1>
-  <p>Choose your date and movie to get your vouchers!</p>
-</header>
+  <header>
 
-<main>
-
-  <!-- Navigation -->
-
-  <div class="tabs">
-
-    <button
-      id="dateTabButton"
-      class="tab-button active"
-      onclick="openTab('date')"
-    >
-      1. 📅 Date
-    </button>
-
-    <button
-      id="movieTabButton"
-      class="tab-button locked"
-      onclick="openTab('movie')"
-    >
-      2. 🎬 Movie 🔒
-    </button>
-
-    <button
-      id="voucherTabButton"
-      class="tab-button locked"
-      onclick="openTab('voucher')"
-    >
-      3. 🎟️ Vouchers 🔒
-    </button>
-
-    <button
-      id="yayTabButton"
-      class="tab-button locked"
-      onclick="openTab('yay')"
-    >
-      4. 🎉 🔒
-    </button>
-
-  </div>
-
-
-  <!-- ===================== -->
-  <!-- PAGE 1: DATE -->
-  <!-- ===================== -->
-
-  <div
-    id="dateTab"
-    class="tab-content active"
-  >
-
-    <h2>Choose Your Date</h2>
+    <h1>🎬 Movie Night</h1>
 
     <p>
-      Select one of the available weekend dates.
+      Choose your date and movie to get your vouchers!
     </p>
 
-
-    <!-- SEPTEMBER -->
-
-    <div class="calendar-container">
-
-      <div class="calendar-title">
-        September 2026
-      </div>
-
-      <div class="calendar">
-
-        <div class="weekday">Mon</div>
-        <div class="weekday">Tue</div>
-        <div class="weekday">Wed</div>
-        <div class="weekday">Thu</div>
-        <div class="weekday">Fri</div>
-        <div class="weekday">Sat</div>
-        <div class="weekday">Sun</div>
-
-        <div class="empty"></div>
-
-        <div class="day">1</div>
-        <div class="day">2</div>
-        <div class="day">3</div>
-        <div class="day">4</div>
-
-        <div
-          class="day available"
-          data-date="2026-09-05"
-        >5</div>
-
-        <div
-          class="day available"
-          data-date="2026-09-06"
-        >6</div>
+  </header>
 
 
-        <div class="day">7</div>
-        <div class="day">8</div>
-        <div class="day">9</div>
-        <div class="day">10</div>
-        <div class="day">11</div>
+  <main>
 
-        <div
-          class="day available"
-          data-date="2026-09-12"
-        >12</div>
+    <!-- ===================== -->
+    <!-- NAVIGATION -->
+    <!-- ===================== -->
 
-        <div
-          class="day available"
-          data-date="2026-09-13"
-        >13</div>
+    <div class="tabs">
+
+      <button
+        id="dateTabButton"
+        class="tab-button active"
+        onclick="openTab('date')"
+      >
+        1. 📅 Date
+      </button>
 
 
-        <div class="day">14</div>
-        <div class="day">15</div>
-        <div class="day">16</div>
-        <div class="day">17</div>
-        <div class="day">18</div>
-        <div class="day">19</div>
-        <div class="day">20</div>
+      <button
+        id="movieTabButton"
+        class="tab-button locked"
+        onclick="openTab('movie')"
+      >
+        2. 🎬 Movie 🔒
+      </button>
 
-        <div class="day">21</div>
-        <div class="day">22</div>
-        <div class="day">23</div>
-        <div class="day">24</div>
-        <div class="day">25</div>
 
-        <div
-          class="day available"
-          data-date="2026-09-26"
-        >26</div>
+      <button
+        id="voucherTabButton"
+        class="tab-button locked"
+        onclick="openTab('voucher')"
+      >
+        3. 🎟️ Vouchers 🔒
+      </button>
 
-        <div
-          class="day available"
-          data-date="2026-09-27"
-        >27</div>
 
-        <div class="day">28</div>
-        <div class="day">29</div>
-        <div class="day">30</div>
-
-      </div>
+      <button
+        id="yayTabButton"
+        class="tab-button locked"
+        onclick="openTab('yay')"
+      >
+        4. 🎉 🔒
+      </button>
 
     </div>
 
 
-    <!-- OCTOBER -->
-
-    <div class="calendar-container">
-
-      <div class="calendar-title">
-        October 2026
-      </div>
-
-      <div class="calendar">
-
-        <div class="weekday">Mon</div>
-        <div class="weekday">Tue</div>
-        <div class="weekday">Wed</div>
-        <div class="weekday">Thu</div>
-        <div class="weekday">Fri</div>
-        <div class="weekday">Sat</div>
-        <div class="weekday">Sun</div>
-
-        <!-- October starts Thursday -->
-
-        <div class="empty"></div>
-        <div class="empty"></div>
-        <div class="empty"></div>
-
-        <div class="day">1</div>
-        <div class="day">2</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-03"
-        >3</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-04"
-        >4</div>
-
-
-        <div class="day">5</div>
-        <div class="day">6</div>
-        <div class="day">7</div>
-        <div class="day">8</div>
-        <div class="day">9</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-10"
-        >10</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-11"
-        >11</div>
-
-
-        <div class="day">12</div>
-        <div class="day">13</div>
-        <div class="day">14</div>
-        <div class="day">15</div>
-        <div class="day">16</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-17"
-        >17</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-18"
-        >18</div>
-
-
-        <div class="day">19</div>
-        <div class="day">20</div>
-        <div class="day">21</div>
-        <div class="day">22</div>
-        <div class="day">23</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-24"
-        >24</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-25"
-        >25</div>
-
-
-        <div class="day">26</div>
-        <div class="day">27</div>
-        <div class="day">28</div>
-        <div class="day">29</div>
-        <div class="day">30</div>
-
-        <div
-          class="day available"
-          data-date="2026-10-31"
-        >31</div>
-
-        <div class="empty"></div>
-
-      </div>
-
-    </div>
-
+    <!-- ===================== -->
+    <!-- PAGE 1: DATE -->
+    <!-- ===================== -->
 
     <div
-      id="dateMessage"
-      class="message"
-    ></div>
-
-    <button
-      class="continue-button"
-      onclick="confirmDate()"
+      id="dateTab"
+      class="tab-content active"
     >
-      Continue to Movie →
-    </button>
 
-  </div>
-
-
-  <!-- ===================== -->
-  <!-- PAGE 2: MOVIE -->
-  <!-- ===================== -->
-
-  <div
-    id="movieTab"
-    class="tab-content"
-  >
-
-    <h2>Choose Your Movie</h2>
-
-    <div class="movies">
-
-      <div
-        class="movie"
-        data-movie="The Adventure"
-      >
-        <h3>🚀 The Adventure</h3>
-        <p>Action / Adventure</p>
-      </div>
-
-      <div
-        class="movie"
-        data-movie="Love in Paris"
-      >
-        <h3>❤️ Love in Paris</h3>
-        <p>Romance</p>
-      </div>
-
-      <div
-        class="movie"
-        data-movie="The Last Mystery"
-      >
-        <h3>🔍 The Last Mystery</h3>
-        <p>Mystery / Thriller</p>
-      </div>
-
-      <div
-        class="movie"
-        data-movie="Galaxy Rising"
-      >
-        <h3>🌌 Galaxy Rising</h3>
-        <p>Sci-Fi</p>
-      </div>
-
-    </div>
-
-    <div
-      id="movieMessage"
-      class="message"
-    ></div>
-
-    <button
-      class="continue-button"
-      onclick="confirmMovie()"
-    >
-      Continue to Vouchers →
-    </button>
-
-  </div>
-
-
-  <!-- ===================== -->
-  <!-- PAGE 3: VOUCHERS -->
-  <!-- ===================== -->
-
-  <div
-    id="voucherTab"
-    class="tab-content"
-  >
-
-    <h2>Your Vouchers 🎟️</h2>
-
-    <div class="summary">
+      <h2>Choose Your Date</h2>
 
       <p>
-        <strong>Date:</strong>
-        <span id="summaryDate"></span>
+        Select one of the available weekend dates.
       </p>
 
-      <p>
-        <strong>Movie:</strong>
-        <span id="summaryMovie"></span>
-      </p>
 
-    </div>
+      <!-- SEPTEMBER 2026 -->
+
+      <div class="calendar-container">
+
+        <div class="calendar-title">
+          September 2026
+        </div>
 
 
-    <div class="vouchers">
+        <div class="calendar">
 
-      <div class="voucher">
+          <div class="weekday">Mon</div>
+          <div class="weekday">Tue</div>
+          <div class="weekday">Wed</div>
+          <div class="weekday">Thu</div>
+          <div class="weekday">Fri</div>
+          <div class="weekday">Sat</div>
+          <div class="weekday">Sun</div>
 
-        <h3>🎟️ Voucher 1</h3>
 
-        <p>Valid for one movie ticket.</p>
+          <!-- September starts Tuesday -->
 
-        <p>
-          Movie:
-          <strong id="voucherMovie1"></strong>
-        </p>
+          <div class="empty"></div>
 
-        <p>
-          Date:
-          <strong id="voucherDate1"></strong>
-        </p>
+          <div class="day">1</div>
+          <div class="day">2</div>
+          <div class="day">3</div>
+          <div class="day">4</div>
 
-        <div class="voucher-code">
-          MOVIE-2026-A1
+          <div
+            class="day available"
+            data-date="2026-09-05"
+          >
+            5
+          </div>
+
+          <div
+            class="day available"
+            data-date="2026-09-06"
+          >
+            6
+          </div>
+
+
+          <div class="day">7</div>
+          <div class="day">8</div>
+          <div class="day">9</div>
+          <div class="day">10</div>
+          <div class="day">11</div>
+
+          <div
+            class="day available"
+            data-date="2026-09-12"
+          >
+            12
+          </div>
+
+          <div
+            class="day available"
+            data-date="2026-09-13"
+          >
+            13
+          </div>
+
+
+          <div class="day">14</div>
+          <div class="day">15</div>
+          <div class="day">16</div>
+          <div class="day">17</div>
+          <div class="day">18</div>
+          <div class="day">19</div>
+          <div class="day">20</div>
+
+          <div class="day">21</div>
+          <div class="day">22</div>
+          <div class="day">23</div>
+          <div class="day">24</div>
+          <div class="day">25</div>
+
+          <div
+            class="day available"
+            data-date="2026-09-26"
+          >
+            26
+          </div>
+
+          <div
+            class="day available"
+            data-date="2026-09-27"
+          >
+            27
+          </div>
+
+          <div class="day">28</div>
+          <div class="day">29</div>
+          <div class="day">30</div>
+
         </div>
 
       </div>
 
 
-      <div class="voucher">
+      <!-- OCTOBER 2026 -->
 
-        <h3>🎟️ Voucher 2</h3>
+      <div class="calendar-container">
 
-        <p>Valid for one movie ticket.</p>
+        <div class="calendar-title">
+          October 2026
+        </div>
 
-        <p>
-          Movie:
-          <strong id="voucherMovie2"></strong>
-        </p>
 
-        <p>
-          Date:
-          <strong id="voucherDate2"></strong>
-        </p>
+        <div class="calendar">
 
-        <div class="voucher-code">
-          MOVIE-2026-B2
+          <div class="weekday">Mon</div>
+          <div class="weekday">Tue</div>
+          <div class="weekday">Wed</div>
+          <div class="weekday">Thu</div>
+          <div class="weekday">Fri</div>
+          <div class="weekday">Sat</div>
+          <div class="weekday">Sun</div>
+
+
+          <!-- October starts Thursday -->
+
+          <div class="empty"></div>
+          <div class="empty"></div>
+          <div class="empty"></div>
+
+          <div class="day">1</div>
+          <div class="day">2</div>
+
+          <div
+            class="day available"
+            data-date="2026-10-03"
+          >
+            3
+          </div>
+
+          <div
+            class="day available"
+            data-date="2026-10-04"
+          >
+            4
+          </div>
+
+
+          <div class="day">5</div>
+          <div class="day">6</div>
+          <div class="day">7</div>
+          <div class="day">8</div>
+          <div class="day">9</div>
+
+          <div
+            class="day available"
+            data-date="2026-10-10"
+          >
+            10
+          </div>
+
+          <div
+            class="day available"
+            data-date="2026-10-11"
+          >
+            11
+          </div>
+
+
+          <div class="day">12</div>
+          <div class="day">13</div>
+          <div class="day">14</div>
+          <div class="day">15</div>
+          <div class="day">16</div>
+
+          <div
+            class="day available"
+            data-date="2026-10-17"
+          >
+            17
+          </div>
+
+          <div
+            class="day available"
+            data-date="2026-10-18"
+          >
+            18
+          </div>
+
+
+          <div class="day">19</div>
+          <div class="day">20</div>
+          <div class="day">21</div>
+          <div class="day">22</div>
+          <div class="day">23</div>
+
+          <div
+            class="day available"
+            data-date="2026-10-24"
+          >
+            24
+          </div>
+
+          <div
+            class="day available"
+            data-date="2026-10-25"
+          >
+            25
+          </div>
+
+
+          <div class="day">26</div>
+          <div class="day">27</div>
+          <div class="day">28</div>
+          <div class="day">29</div>
+          <div class="day">30</div>
+
+          <div
+            class="day available"
+            data-date="2026-10-31"
+          >
+            31
+          </div>
+
+          <div class="empty"></div>
+
         </div>
 
       </div>
 
-    </div>
-
-
-    <button
-      class="continue-button"
-      onclick="finishBooking()"
-    >
-      Go Next! 🎉
-    </button>
-
-  </div>
-
-
-  <!-- ===================== -->
-  <!-- PAGE 4: YAY -->
-  <!-- ===================== -->
-
-  <div
-    id="yayTab"
-    class="tab-content"
-  >
-
-    <div class="yay-page">
-
-      <h1>🎉 YAY YAY YAY! 🎉</h1>
-
-      <p>
-        CAN'T WAIT!
-      </p>
-
-      <p>
-        🍿🎬🥳
-      </p>
 
       <div
-        id="saveMessage"
+        id="dateMessage"
         class="message"
       ></div>
 
+
+      <button
+        class="continue-button"
+        onclick="confirmDate()"
+      >
+        Continue to Movie →
+      </button>
+
     </div>
 
-  </div>
 
-</main>
+    <!-- ===================== -->
+    <!-- PAGE 2: MOVIE -->
+    <!-- ===================== -->
 
+    <div
+      id="movieTab"
+      class="tab-content"
+    >
 
-<script>
+      <h2>Choose Your Movie</h2>
 
-  /*
-    PUT YOUR GOOGLE APPS SCRIPT URL HERE
-  */
 
-  const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxP4KZftW2k0K9d4kKReDLwBXY_1BXjDzLr5w-XencvzcGiNplOnqbt63oRkJeLyYTPKQ/exec";
+      <div class="movies">
 
+        <div
+          class="movie"
+          data-movie="The Adventure"
+        >
 
-  let selectedDate = "";
-  let selectedMovie = "";
+          <h3>🚀 The Adventure</h3>
 
-  let dateUnlocked = false;
-  let movieUnlocked = false;
-  let voucherUnlocked = false;
+          <p>
+            Action / Adventure
+          </p>
 
+        </div>
 
-  /* ===================== */
-  /* TAB NAVIGATION */
-  /* ===================== */
 
-  function openTab(tabName) {
+        <div
+          class="movie"
+          data-movie="Love in Paris"
+        >
 
-    if (
-      tabName === "movie" &&
-      !dateUnlocked
-    ) {
-      return;
-    }
+          <h3>❤️ Love in Paris</h3>
 
+          <p>
+            Romance
+          </p>
 
-    if (
-      tabName === "voucher" &&
-      !movieUnlocked
-    ) {
-      return;
-    }
+        </div>
 
 
-    if (
-      tabName === "yay" &&
-      !voucherUnlocked
-    ) {
-      return;
-    }
+        <div
+          class="movie"
+          data-movie="The Last Mystery"
+        >
 
+          <h3>🔍 The Last Mystery</h3>
 
-    document
-      .querySelectorAll(".tab-content")
-      .forEach(function(tab) {
+          <p>
+            Mystery / Thriller
+          </p>
 
-        tab.classList.remove("active");
+        </div>
 
-      });
 
+        <div
+          class="movie"
+          data-movie="Galaxy Rising"
+        >
 
-    document
-      .querySelectorAll(".tab-button")
-      .forEach(function(button) {
+          <h3>🌌 Galaxy Rising</h3>
 
-        button.classList.remove("active");
+          <p>
+            Sci-Fi
+          </p>
 
-      });
+        </div>
 
+      </div>
 
-    document
-      .getElementById(tabName + "Tab")
-      .classList
-      .add("active");
 
+      <div
+        id="movieMessage"
+        class="message"
+      ></div>
 
-    document
-      .getElementById(tabName + "TabButton")
-      .classList
-      .add("active");
 
-  }
+      <button
+        class="continue-button"
+        onclick="confirmMovie()"
+      >
+        Continue to Vouchers →
+      </button>
 
+    </div>
 
-  /* ===================== */
-  /* DATE SELECTION */
-  /* ===================== */
 
-  const availableDays =
-    document.querySelectorAll(
-      ".day.available"
-    );
+    <!-- ===================== -->
+    <!-- PAGE 3: VOUCHERS -->
+    <!-- ===================== -->
 
+    <div
+      id="voucherTab"
+      class="tab-content"
+    >
 
-  availableDays.forEach(function(day) {
+      <h2>Your Vouchers 🎟️</h2>
 
-    day.addEventListener(
-      "click",
-      function() {
 
-        availableDays.forEach(function(item) {
+      <div class="summary">
 
-          item.classList.remove("selected");
+        <p>
 
-        });
+          <strong>Date:</strong>
 
+          <span id="summaryDate"></span>
 
-        day.classList.add("selected");
+        </p>
 
 
-        selectedDate =
-          day.dataset.date;
+        <p>
 
+          <strong>Movie:</strong>
 
-        document
-          .getElementById("dateMessage")
-          .textContent =
-          "Selected: " +
-          formatDate(selectedDate);
+          <span id="summaryMovie"></span>
 
-      }
-    );
+        </p>
 
-  });
+      </div>
 
 
-  function confirmDate() {
+      <div class="vouchers">
 
-    if (!selectedDate) {
 
-      document
-        .getElementById("dateMessage")
-        .textContent =
-        "Please select a date.";
+        <!-- Voucher 1 -->
 
-      return;
+        <div class="voucher">
 
-    }
+          <h3>🎟️ Voucher 1</h3>
 
+          <p>
+            Valid for one movie ticket.
+          </p>
 
-    dateUnlocked = true;
+          <p>
 
+            Movie:
 
-    const movieButton =
-      document.getElementById(
-        "movieTabButton"
-      );
+            <strong
+              id="voucherMovie1"
+            ></strong>
 
+          </p>
 
-    movieButton
-      .classList
-      .remove("locked");
+          <p>
 
+            Date:
 
-    movieButton.textContent =
-      "2. 🎬 Movie";
+            <strong
+              id="voucherDate1"
+            ></strong>
 
+          </p>
 
-    openTab("movie");
 
-  }
+          <div class="voucher-code">
 
+            MOVIE-2026-A1
 
-  /* ===================== */
-  /* MOVIE SELECTION */
-  /* ===================== */
+          </div>
 
-  const movies =
-    document.querySelectorAll(".movie");
+        </div>
 
 
-  movies.forEach(function(movie) {
+        <!-- Voucher 2 -->
 
-    movie.addEventListener(
-      "click",
-      function() {
+        <div class="voucher">
 
-        movies.forEach(function(item) {
+          <h3>🎟️ Voucher 2</h3>
 
-          item.classList.remove("selected");
+          <p>
+            Valid for one movie ticket.
+          </p>
 
-        });
+          <p>
 
+            Movie:
 
-        movie.classList.add("selected");
+            <strong
+              id="voucherMovie2"
+            ></strong>
 
+          </p>
 
-        selectedMovie =
-          movie.dataset.movie;
+          <p>
 
+            Date:
 
-        document
-          .getElementById("movieMessage")
-          .textContent =
-          "Selected: " +
-          selectedMovie;
+            <strong
+              id="voucherDate2"
+            ></strong>
 
-      }
-    );
+          </p>
 
-  });
 
+          <div class="voucher-code">
 
-  function confirmMovie() {
+            MOVIE-2026-B2
 
-    if (!selectedMovie) {
+          </div>
 
-      document
-        .getElementById("movieMessage")
-        .textContent =
-        "Please select a movie.";
+        </div>
 
-      return;
+      </div>
 
-    }
 
+      <button
+        class="continue-button"
+        onclick="finishBooking()"
+      >
+        Go Next! 🎉
+      </button>
 
-    movieUnlocked = true;
+    </div>
 
 
-    const voucherButton =
-      document.getElementById(
-        "voucherTabButton"
-      );
+    <!-- ===================== -->
+    <!-- PAGE 4: YAY -->
+    <!-- ===================== -->
 
+    <div
+      id="yayTab"
+      class="tab-content"
+    >
 
-    voucherButton
-      .classList
-      .remove("locked");
+      <div class="yay-page">
 
+        <h1>
+          🎉 YAY YAY YAY! 🎉
+        </h1>
 
-    voucherButton.textContent =
-      "3. 🎟️ Vouchers";
+        <p>
+          CAN'T WAIT!
+        </p>
 
+        <p>
+          🍿 🎬 🥳
+        </p>
 
-    updateVouchers();
 
+        <div
+          id="saveMessage"
+          class="message"
+        ></div>
 
-    openTab("voucher");
+      </div>
 
-  }
+    </div>
 
+  </main>
 
-  /* ===================== */
-  /* UPDATE VOUCHERS */
-  /* ===================== */
 
-  function updateVouchers() {
+  <!-- ===================== -->
+  <!-- HIDDEN GOOGLE FRAME -->
+  <!-- ===================== -->
 
-    const formattedDate =
-      formatDate(selectedDate);
+  <iframe
+    name="hiddenGoogleFrame"
+    style="display: none;"
+  ></iframe>
 
 
-    document
-      .getElementById("summaryDate")
-      .textContent =
-      formattedDate;
+  <!-- ===================== -->
+  <!-- JAVASCRIPT -->
+  <!-- ===================== -->
 
+  <script>
 
-    document
-      .getElementById("summaryMovie")
-      .textContent =
-      selectedMovie;
+    /*
+      YOUR GOOGLE APPS SCRIPT URL
+    */
 
-
-    document
-      .getElementById("voucherMovie1")
-      .textContent =
-      selectedMovie;
-
-
-    document
-      .getElementById("voucherMovie2")
-      .textContent =
-      selectedMovie;
-
-
-    document
-      .getElementById("voucherDate1")
-      .textContent =
-      formattedDate;
-
-
-    document
-      .getElementById("voucherDate2")
-      .textContent =
-      formattedDate;
-
-  }
-
-
-  /* ===================== */
-  /* FINAL PAGE */
-  /* ===================== */
-
-  function finishBooking() {
-
-    voucherUnlocked = true;
-
-
-    const yayButton =
-      document.getElementById(
-        "yayTabButton"
-      );
-
-
-    yayButton
-      .classList
-      .remove("locked");
-
-
-    yayButton.textContent =
-      "4. 🎉 Yay!";
-
-
-    openTab("yay");
+    const GOOGLE_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbxP4KZftW2k0K9d4kKReDLwBXY_1BXjDzLr5w-XencvzcGiNplOnqbt63oRkJeLyYTPKQ/exec";
 
 
     /*
-      THIS IS WHERE THE
-      GOOGLE SHEET IS UPDATED
+      Store the user's choices
     */
 
-    saveSelection();
+    let selectedDate = "";
+    let selectedMovie = "";
 
-  }
+    let dateUnlocked = false;
+    let movieUnlocked = false;
+    let voucherUnlocked = false;
 
 
-  /* ===================== */
-  /* FORMAT DATE */
-  /* ===================== */
+    /* ===================== */
+    /* OPEN TAB */
+    /* ===================== */
 
-  function formatDate(dateString) {
+    function openTab(tabName) {
 
-    const date =
-      new Date(
-        dateString + "T00:00:00"
+      if (
+        tabName === "movie" &&
+        !dateUnlocked
+      ) {
+        return;
+      }
+
+
+      if (
+        tabName === "voucher" &&
+        !movieUnlocked
+      ) {
+        return;
+      }
+
+
+      if (
+        tabName === "yay" &&
+        !voucherUnlocked
+      ) {
+        return;
+      }
+
+
+      const tabs =
+        document.querySelectorAll(
+          ".tab-content"
+        );
+
+
+      tabs.forEach(function(tab) {
+
+        tab.classList.remove(
+          "active"
+        );
+
+      });
+
+
+      const buttons =
+        document.querySelectorAll(
+          ".tab-button"
+        );
+
+
+      buttons.forEach(function(button) {
+
+        button.classList.remove(
+          "active"
+        );
+
+      });
+
+
+      document
+        .getElementById(
+          tabName + "Tab"
+        )
+        .classList
+        .add("active");
+
+
+      document
+        .getElementById(
+          tabName + "TabButton"
+        )
+        .classList
+        .add("active");
+
+    }
+
+
+    /* ===================== */
+    /* DATE SELECTION */
+    /* ===================== */
+
+    const availableDays =
+      document.querySelectorAll(
+        ".day.available"
       );
 
 
-    return date.toLocaleDateString(
-      "en-IE",
-      {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
+    availableDays.forEach(
+      function(day) {
+
+        day.addEventListener(
+          "click",
+          function() {
+
+            availableDays.forEach(
+              function(item) {
+
+                item.classList.remove(
+                  "selected"
+                );
+
+              }
+            );
+
+
+            day.classList.add(
+              "selected"
+            );
+
+
+            selectedDate =
+              day.dataset.date;
+
+
+            document
+              .getElementById(
+                "dateMessage"
+              )
+              .textContent =
+              "Selected: " +
+              formatDate(
+                selectedDate
+              );
+
+          }
+        );
+
       }
     );
 
-  }
+
+    /* ===================== */
+    /* CONFIRM DATE */
+    /* ===================== */
+
+    function confirmDate() {
+
+      if (!selectedDate) {
+
+        document
+          .getElementById(
+            "dateMessage"
+          )
+          .textContent =
+          "Please select a date.";
+
+        return;
+
+      }
 
 
-  /* ===================== */
-  /* SAVE TO GOOGLE SHEETS */
-  /* ===================== */
-function saveSelection() {
-
-  const message =
-    document.getElementById("saveMessage");
-
-  if (
-    GOOGLE_SCRIPT_URL ===
-    "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
-  ) {
-    message.textContent =
-      "Google Sheets URL has not been added.";
-
-    return;
-  }
-
-  message.textContent =
-    "Saving your selection...";
-
-  const form =
-    document.createElement("form");
-
-  form.method = "POST";
-  form.action = GOOGLE_SCRIPT_URL;
-  form.target = "hiddenGoogleFrame";
+      dateUnlocked = true;
 
 
-  const dateField =
-    document.createElement("input");
-
-  dateField.type = "hidden";
-  dateField.name = "date";
-  dateField.value = selectedDate;
-
-  form.appendChild(dateField);
+      const movieButton =
+        document.getElementById(
+          "movieTabButton"
+        );
 
 
-  const movieField =
-    document.createElement("input");
-
-  movieField.type = "hidden";
-  movieField.name = "movie";
-  movieField.value = selectedMovie;
-
-  form.appendChild(movieField);
+      movieButton.classList.remove(
+        "locked"
+      );
 
 
-  document.body.appendChild(form);
+      movieButton.textContent =
+        "2. 🎬 Movie";
 
-  form.submit();
 
-  document.body.removeChild(form);
+      openTab(
+        "movie"
+      );
 
-  message.textContent =
-    "✓ Your selection has been sent!";
-}
-</script>
-<iframe
-  name="hiddenGoogleFrame"
-  style="display:none;"
-></iframe>
+    }
+
+
+    /* ===================== */
+    /* MOVIE SELECTION */
+    /* ===================== */
+
+    const movies =
+      document.querySelectorAll(
+        ".movie"
+      );
+
+
+    movies.forEach(
+      function(movie) {
+
+        movie.addEventListener(
+          "click",
+          function() {
+
+            movies.forEach(
+              function(item) {
+
+                item.classList.remove(
+                  "selected"
+                );
+
+              }
+            );
+
+
+            movie.classList.add(
+              "selected"
+            );
+
+
+            selectedMovie =
+              movie.dataset.movie;
+
+
+            document
+              .getElementById(
+                "movieMessage"
+              )
+              .textContent =
+              "Selected: " +
+              selectedMovie;
+
+          }
+        );
+
+      }
+    );
+
+
+    /* ===================== */
+    /* CONFIRM MOVIE */
+    /* ===================== */
+
+    function confirmMovie() {
+
+      if (!selectedMovie) {
+
+        document
+          .getElementById(
+            "movieMessage"
+          )
+          .textContent =
+          "Please select a movie.";
+
+        return;
+
+      }
+
+
+      movieUnlocked = true;
+
+
+      const voucherButton =
+        document.getElementById(
+          "voucherTabButton"
+        );
+
+
+      voucherButton.classList.remove(
+        "locked"
+      );
+
+
+      voucherButton.textContent =
+        "3. 🎟️ Vouchers";
+
+
+      updateVouchers();
+
+
+      openTab(
+        "voucher"
+      );
+
+    }
+
+
+    /* ===================== */
+    /* UPDATE VOUCHERS */
+    /* ===================== */
+
+    function updateVouchers() {
+
+      const formattedDate =
+        formatDate(
+          selectedDate
+        );
+
+
+      document
+        .getElementById(
+          "summaryDate"
+        )
+        .textContent =
+        formattedDate;
+
+
+      document
+        .getElementById(
+          "summaryMovie"
+        )
+        .textContent =
+        selectedMovie;
+
+
+      document
+        .getElementById(
+          "voucherMovie1"
+        )
+        .textContent =
+        selectedMovie;
+
+
+      document
+        .getElementById(
+          "voucherMovie2"
+        )
+        .textContent =
+        selectedMovie;
+
+
+      document
+        .getElementById(
+          "voucherDate1"
+        )
+        .textContent =
+        formattedDate;
+
+
+      document
+        .getElementById(
+          "voucherDate2"
+        )
+        .textContent =
+        formattedDate;
+
+    }
+
+
+    /* ===================== */
+    /* FINISH BOOKING */
+    /* ===================== */
+
+    function finishBooking() {
+
+      voucherUnlocked = true;
+
+
+      const yayButton =
+        document.getElementById(
+          "yayTabButton"
+        );
+
+
+      yayButton.classList.remove(
+        "locked"
+      );
+
+
+      yayButton.textContent =
+        "4. 🎉 Yay!";
+
+
+      openTab(
+        "yay"
+      );
+
+
+      /*
+        Save to Google Sheets
+        ONLY at this point.
+      */
+
+      saveSelection();
+
+    }
+
+
+    /* ===================== */
+    /* FORMAT DATE */
+    /* ===================== */
+
+    function formatDate(dateString) {
+
+      const date =
+        new Date(
+          dateString + "T00:00:00"
+        );
+
+
+      return date.toLocaleDateString(
+        "en-IE",
+        {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        }
+      );
+
+    }
+
+
+    /* ===================== */
+    /* SAVE TO GOOGLE SHEETS */
+    /* ===================== */
+
+    function saveSelection() {
+
+      const message =
+        document.getElementById(
+          "saveMessage"
+        );
+
+
+      message.textContent =
+        "Saving your selection...";
+
+
+      const form =
+        document.createElement(
+          "form"
+        );
+
+
+      form.method =
+        "POST";
+
+
+      form.action =
+        GOOGLE_SCRIPT_URL;
+
+
+      form.target =
+        "hiddenGoogleFrame";
+
+
+      /*
+        Date field
+      */
+
+      const dateField =
+        document.createElement(
+          "input"
+        );
+
+
+      dateField.type =
+        "hidden";
+
+
+      dateField.name =
+        "date";
+
+
+      dateField.value =
+        selectedDate;
+
+
+      form.appendChild(
+        dateField
+      );
+
+
+      /*
+        Movie field
+      */
+
+      const movieField =
+        document.createElement(
+          "input"
+        );
+
+
+      movieField.type =
+        "hidden";
+
+
+      movieField.name =
+        "movie";
+
+
+      movieField.value =
+        selectedMovie;
+
+
+      form.appendChild(
+        movieField
+      );
+
+
+      /*
+        Add form to page
+      */
+
+      document.body.appendChild(
+        form
+      );
+
+
+      /*
+        Submit to Google Apps Script
+
+        This does NOT use fetch(),
+        so it avoids the CORS issue.
+      */
+
+      form.submit();
+
+
+      /*
+        Remove the temporary form
+      */
+
+      setTimeout(
+        function() {
+
+          if (
+            document.body.contains(
+              form
+            )
+          ) {
+
+            document.body.removeChild(
+              form
+            );
+
+          }
+
+        },
+        1000
+      );
+
+
+      message.textContent =
+        "✓ Your selection has been sent!";
+
+    }
+
+  </script>
+
 </body>
+
 </html>
